@@ -1,0 +1,20 @@
+name: vector-web
+version: master
+summary: A glossy Matrix collaboration client for the web.
+description: |
+  Vector is a Matrix web client built using the Matrix React SDK
+
+grade: stable
+confinement: strict
+
+apps:
+  server:
+    command: sh -c \"cd $SNAP/lib/node_modules/vector-web && npm start\"
+    plugs: [network, network-bind]
+    daemon: simple
+
+parts:
+  vector-web:
+    source: .
+    plugin: nodejs
+    node-packages: [http-server, parallelshell]
